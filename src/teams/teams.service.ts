@@ -5,6 +5,7 @@ import { Team } from './entities/team.entity';
 import { CreateTeamDto } from './dto/create-team.dto';
 import { UpdateTeamDto } from './dto/update-team.dto';
 import { User } from '../user/entities/user.entity';
+import { Player } from 'src/player/entities/player.entity';
 
 @Injectable()
 export class TeamsService {
@@ -14,6 +15,9 @@ export class TeamsService {
 
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+
+    @InjectRepository(Player)
+    private readonly playerRepository: Repository<Player>,
   ) {}
 
   async create(createTeamDto: CreateTeamDto): Promise<Team> {
@@ -36,10 +40,17 @@ export class TeamsService {
   
     // Atualiza o usuário para ser dono desse time
     createdBy.team = savedTeam;
-    await this.userRepository.save(createdBy);
+  
+    // 🔥 Se o usuário tem um jogador, adiciona o jogador ao time criado
+    if (createdBy.player) {
+      createdBy.player.team = savedTeam;
+      await this.userRepository.save(createdBy); // Salva a atualização no usuário
+      await this.playerRepository.save(createdBy.player); // Salva o time do jogador
+    }
   
     return savedTeam;
   }
+  
   
 
 
