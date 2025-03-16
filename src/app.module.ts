@@ -23,12 +23,7 @@ import { PlayoffModule } from './playoff/playoff.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      password:'123',
-      username: 'postgres',
-      entities: [User],
-      database: 'patoleague-db',
+      url: process.env.DATABASE_URL,
       autoLoadEntities: true,
       synchronize: true,
       logging: true,
