@@ -18,17 +18,12 @@ import { PlayerTeamModule } from './player-team/player-team.module';
 import { TeamInviteModule } from './team-invite/team-invite.module';
 import { PlayoffModule } from './playoff/playoff.module';
 import { PlayerMatchStatsModule } from './player-match-stats/player-match-stats.module';
+import { typeOrmConfig } from './config/ormconfig';
 
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      url: process.env.DATABASE_URL,
-      autoLoadEntities: true,
-      synchronize: true,
-      logging: true,
-    }),
+    TypeOrmModule.forRoot(typeOrmConfig),
     UserModule,
     AuthModule,
     PlayerModule,
