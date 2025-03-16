@@ -5,9 +5,11 @@ import {
     ManyToOne,
     CreateDateColumn,
     UpdateDateColumn,
+    OneToMany,
   } from 'typeorm';
   import { Team } from '../../teams/entities/team.entity';
   import { Championship } from 'src/championship/entities/championship.entity';
+import { PlayerMatchStats } from 'src/player-match-stats/entities/player-match-stats.entity';
   
   @Entity()
   export class Match {
@@ -44,5 +46,9 @@ import {
   
     @UpdateDateColumn()
     updatedAt: Date;
+
+     // ✅ Relacionamento com as estatísticas individuais dos jogadores por partida
+    @OneToMany(() => PlayerMatchStats, (playerStats) => playerStats.match)
+    playerStats: PlayerMatchStats[];
   }
   

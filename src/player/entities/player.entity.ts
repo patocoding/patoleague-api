@@ -2,6 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, CreateDateColumn, Up
 import { User } from 'src/user/entities/user.entity';
 import { Team } from 'src/teams/entities/team.entity';
 import { PlayerTeam } from 'src/player-team/entities/playerTeam.entity';
+import { PlayerMatchStats } from 'src/player-match-stats/entities/player-match-stats.entity';
 
 @Entity()
 export class Player {
@@ -53,6 +54,9 @@ export class Player {
     @OneToOne(() => User, (user) => user.player, { onDelete: 'CASCADE' }) 
     @JoinColumn() 
     user: User;
+    
+    @OneToMany(() => PlayerMatchStats, (playerStats) => playerStats.player)
+  matchStats: PlayerMatchStats[];
   
     @CreateDateColumn()
     createdAt: Date;

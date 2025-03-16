@@ -17,6 +17,7 @@ import { ChampionshipTeamModule } from './championship-team/championship-team.mo
 import { PlayerTeamModule } from './player-team/player-team.module';
 import { TeamInviteModule } from './team-invite/team-invite.module';
 import { PlayoffModule } from './playoff/playoff.module';
+import { PlayerMatchStatsModule } from './player-match-stats/player-match-stats.module';
 
 
 @Module({
@@ -39,6 +40,7 @@ import { PlayoffModule } from './playoff/playoff.module';
     PlayerTeamModule,
     TeamInviteModule,
     PlayoffModule,
+    PlayerMatchStatsModule,
   ],
   controllers: [AppController],
   providers: [AppService, {
