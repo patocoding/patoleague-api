@@ -26,16 +26,25 @@ export class PlayerService {
   ) {}
 
   async create(createPlayerDto: CreatePlayerDto): Promise<Player> {
-    const user = await this.userRepository.findOne({ where: { id: createPlayerDto.userId } });
+    const user = await this.userRepository.findOne({ 
+      where: { id: createPlayerDto.userId }, 
+      relations: ['team']
+    });
   
     if (!user) {
       throw new NotFoundException('Usuário não encontrado');
     }
   
+    let team = null;
+  
+    if (user.team) {
+      team = user.team;
+    }
+
     const player = this.playerRepository.create({
       ...createPlayerDto,
       user,
-      team: user.team || null,
+      team,
     });
   
     return this.playerRepository.save(player);

@@ -26,4 +26,7 @@ export class CreateTeamDto {
 
   @IsOptional()
   createdById?: number; // ID do usuário que criou o time
+
+  @IsOptional()
+  photoUrl:string;
 }

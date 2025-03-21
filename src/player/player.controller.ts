@@ -54,12 +54,13 @@ export class PlayerController {
   }
 
   @Get(':id')
-  
+  @Public()
   findOne(@Param('id') id: string) {
     return this.playerService.findOne(+id);
   }
 
   @Patch(':id')
+  @Public()
   update(@Param('id') id: string, @Body() updatePlayerDto: UpdatePlayerDto) {
     return this.playerService.update(+id, updatePlayerDto);
   }
@@ -71,6 +72,7 @@ getNicknameByUserId(@Param('userId') userId: number) {
 }
 
   @Delete(':id')
+  @Public()
   remove(@Param('id') id: string) {
     return this.playerService.remove(+id);
   }

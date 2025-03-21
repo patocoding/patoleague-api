@@ -49,4 +49,7 @@ export class CreatePlayerDto {
 
   @IsOptional()
   teamId?: number;
+
+  @IsString()
+  photoUrl: string;
 }
