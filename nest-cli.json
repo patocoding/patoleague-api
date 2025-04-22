@@ -1,6 +1,26 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
+  "generator": {
+    "module": {
+      "directory": "src/modules"
+    },
+      "service": {
+        "directory": "src/modules"
+      },
+      "controller": {
+        "directory": "src/modules"
+      },
+      "guard": {
+        "directory": "src/guards"
+      },
+      "interceptor": {
+        "directory": "src/interceptors"
+      },
+      "filter": {
+        "directory": "src/filters"
+      }
+  },
   "sourceRoot": "src",
   "compilerOptions": {
     "deleteOutDir": true
